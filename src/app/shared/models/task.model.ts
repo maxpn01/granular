@@ -14,7 +14,7 @@ export type Task = {
   title: string;
   description?: string;
   status: TaskStatus;
-  priority?: TaskPriority;
+  priority: TaskPriority;
   subtasks: Task[];
   createdAt: string;
   updatedat: string;

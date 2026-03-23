@@ -1,4 +1,4 @@
 <div class="task-card">
-  <span class="title">task title</span>
+  <span class="title">{{task()?.title ?? ""}}</span>
   <button class="edit-btn" (click)="edit.emit()">edit</button>
 </div>

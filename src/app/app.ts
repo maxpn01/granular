@@ -4,7 +4,8 @@ import { Board } from "./ui/board/board";
 import { UserProfile } from "./ui/user-profile/user-profile";
 import { TaskModal } from "./ui/task-modal/task-modal";
 import { APP_TITLE, TaskModalMode } from "./app.globals";
-import { TaskStatus } from "./shared/models/task.model";
+import { Task, TaskStatus } from "./shared/models/task.model";
+import { TaskFormValues } from "./ui/task-modal/task-modal.type";
 
 @Component({
   selector: "app-root",
@@ -18,6 +19,8 @@ export class App {
   readonly taskModalMode = signal<TaskModalMode>(TaskModalMode.CREATE);
   readonly taskModalStatus = signal<TaskStatus>(TaskStatus.TODO);
 
+  readonly tasks = signal<Task[]>([]);
+
   openTaskModal(event: { mode: TaskModalMode; status?: TaskStatus }) {
     this.isTaskModalOpen.set(true);
     this.taskModalMode.set(event.mode);
@@ -27,5 +30,21 @@ export class App {
 
   closeTaskModal() {
     this.isTaskModalOpen.set(false);
+  }
+
+  addTask(form: TaskFormValues) {
+    const task: Task = {
+      id: crypto.randomUUID(),
+      title: form.title,
+      description: form.description,
+      priority: form.priority,
+      status: form.status,
+      subtasks: [],
+      createdAt: new Date().toISOString(),
+      updatedat: new Date().toISOString(),
+    };
+
+    this.tasks.update((tasks) => [...tasks, task]);
+    this.closeTaskModal();
   }
 }

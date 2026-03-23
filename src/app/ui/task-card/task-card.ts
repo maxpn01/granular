@@ -1,5 +1,5 @@
 import { Component, input, output } from "@angular/core";
-import { TaskStatus } from "../../shared/models/task.model";
+import { Task, TaskStatus } from "../../shared/models/task.model";
 import { TaskModalMode } from "../../app.globals";
 
 @Component({
@@ -12,6 +12,6 @@ export class TaskCard {
   readonly TaskModalMode = TaskModalMode;
   readonly TaskStatus = TaskStatus;
 
-  readonly taskStatus = input<TaskStatus>();
+  readonly task = input<Task>();
   readonly edit = output<void>();
 }

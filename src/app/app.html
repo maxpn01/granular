@@ -13,13 +13,15 @@
   </aside>
 
   <main>
-    <app-board (openTaskModal)="openTaskModal($event)" />
+    <app-board [tasks]="tasks()" (openTaskModal)="openTaskModal($event)" />
   </main>
 
   <app-task-modal
     [isOpen]="isTaskModalOpen()"
     [mode]="taskModalMode()"
     (close)="closeTaskModal()"
+    [status]="taskModalStatus()"
+    (formSubmit)="addTask($event)"
   />
 </div>
 

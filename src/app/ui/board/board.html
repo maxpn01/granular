@@ -6,27 +6,13 @@
         class="add-btn"
         (click)="openTaskModal.emit({ mode: TaskModalMode.CREATE, status: TaskStatus.TODO })"
       >
-        <svg width="20px" height="20px" viewBox="0 0 448 512">
-          <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
-          <path
-            d="M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z"
-          />
-        </svg>
+        <app-icon-plus />
       </button>
     </div>
     <div class="tasks">
-      <app-task-card
-        [taskStatus]="TaskStatus.TODO"
-        (edit)="openTaskModal.emit({ mode: TaskModalMode.EDIT, status: TaskStatus.TODO })"
-      />
-      <app-task-card
-        [taskStatus]="TaskStatus.TODO"
-        (edit)="openTaskModal.emit({ mode: TaskModalMode.EDIT, status: TaskStatus.TODO })"
-      />
-      <app-task-card
-        [taskStatus]="TaskStatus.TODO"
-        (edit)="openTaskModal.emit({ mode: TaskModalMode.EDIT, status: TaskStatus.TODO })"
-      />
+      @for (task of todoTasks(); track task.id) {
+      <app-task-card [task]="task" />
+      }
     </div>
   </div>
   <div class="progress">
@@ -36,27 +22,13 @@
         class="add-btn"
         (click)="openTaskModal.emit({ mode: TaskModalMode.CREATE, status: TaskStatus.PROGRESS })"
       >
-        <svg width="20px" height="20px" viewBox="0 0 448 512">
-          <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
-          <path
-            d="M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z"
-          />
-        </svg>
+        <app-icon-plus />
       </button>
     </div>
     <div class="tasks">
-      <app-task-card
-        [taskStatus]="TaskStatus.PROGRESS"
-        (edit)="openTaskModal.emit({ mode: TaskModalMode.EDIT, status: TaskStatus.PROGRESS })"
-      />
-      <app-task-card
-        [taskStatus]="TaskStatus.PROGRESS"
-        (edit)="openTaskModal.emit({ mode: TaskModalMode.EDIT, status: TaskStatus.PROGRESS })"
-      />
-      <app-task-card
-        [taskStatus]="TaskStatus.PROGRESS"
-        (edit)="openTaskModal.emit({ mode: TaskModalMode.EDIT, status: TaskStatus.PROGRESS })"
-      />
+      @for (task of progressTasks(); track task.id) {
+      <app-task-card [task]="task" />
+      }
     </div>
   </div>
   <div class="done">
@@ -66,27 +38,13 @@
         class="add-btn"
         (click)="openTaskModal.emit({ mode: TaskModalMode.CREATE, status: TaskStatus.DONE })"
       >
-        <svg width="20px" height="20px" viewBox="0 0 448 512">
-          <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
-          <path
-            d="M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z"
-          />
-        </svg>
+        <app-icon-plus />
       </button>
     </div>
     <div class="tasks">
-      <app-task-card
-        [taskStatus]="TaskStatus.DONE"
-        (edit)="openTaskModal.emit({ mode: TaskModalMode.EDIT, status: TaskStatus.DONE })"
-      />
-      <app-task-card
-        [taskStatus]="TaskStatus.DONE"
-        (edit)="openTaskModal.emit({ mode: TaskModalMode.EDIT, status: TaskStatus.DONE })"
-      />
-      <app-task-card
-        [taskStatus]="TaskStatus.DONE"
-        (edit)="openTaskModal.emit({ mode: TaskModalMode.EDIT, status: TaskStatus.DONE })"
-      />
+      @for (task of doneTasks(); track task.id) {
+      <app-task-card [task]="task" />
+      }
     </div>
   </div>
 </div>
