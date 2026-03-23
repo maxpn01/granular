@@ -1,0 +1,23 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.import-export-btns {
+    display: flex;
+    gap: 15px;
+
+    button {
+        background: transparent;
+        border: 1px solid black;
+    }
+}

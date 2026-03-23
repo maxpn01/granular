@@ -1,0 +1,32 @@
+.board {
+    display: flex;
+    margin-top: 20px;
+}
+
+.todo,
+.progress,
+.done {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-right: 30px;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+
+        .add-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+    }
+
+    .tasks {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+}
