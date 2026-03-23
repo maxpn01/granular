@@ -3,6 +3,7 @@ import { TaskCard } from "../task-card/task-card";
 import { Task, TaskStatus } from "../../shared/models/task.model";
 import { TaskModalMode } from "../../app.globals";
 import { IconPlus } from "../icons/icon-plus";
+import { TaskFormValues } from "../task-modal/task-modal.type";
 
 @Component({
   selector: "app-board",
@@ -16,7 +17,10 @@ export class Board {
   readonly openTaskModal = output<{
     mode: TaskModalMode;
     status: TaskStatus;
+    task: Task | null;
   }>();
+  readonly editTask = output<TaskFormValues>();
+
   tasks = input<Task[]>();
 
   todoTasks = computed(

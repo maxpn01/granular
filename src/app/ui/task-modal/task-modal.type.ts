@@ -1,8 +1,3 @@
-import { TaskPriority, TaskStatus } from "../../shared/models/task.model";
+import { Task } from "../../shared/models/task.model";
 
-export type TaskFormValues = {
-  title: string;
-  description?: string;
-  priority: TaskPriority;
-  status: TaskStatus;
-};
+export type TaskFormValues = Omit<Task, "updatedAt">;

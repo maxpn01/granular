@@ -21,7 +21,8 @@
     [mode]="taskModalMode()"
     (close)="closeTaskModal()"
     [status]="taskModalStatus()"
-    (formSubmit)="addTask($event)"
+    (formSubmit)="handleTaskSubmit($event)"
+    [task]="currentlyEditedTask()"
   />
 </div>
 

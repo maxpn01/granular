@@ -17,5 +17,5 @@ export type Task = {
   priority: TaskPriority;
   subtasks: Task[];
   createdAt: string;
-  updatedat: string;
+  updatedAt: string;
 };

@@ -4,14 +4,17 @@
       <h3 class="label">todo</h3>
       <button
         class="add-btn"
-        (click)="openTaskModal.emit({ mode: TaskModalMode.CREATE, status: TaskStatus.TODO })"
+        (click)="openTaskModal.emit({ mode: TaskModalMode.CREATE, status: TaskStatus.TODO, task: null })"
       >
         <app-icon-plus />
       </button>
     </div>
     <div class="tasks">
       @for (task of todoTasks(); track task.id) {
-      <app-task-card [task]="task" />
+      <app-task-card
+        [task]="task"
+        (edit)="openTaskModal.emit({mode: TaskModalMode.EDIT, status: TaskStatus.TODO, task})"
+      />
       }
     </div>
   </div>
@@ -20,14 +23,17 @@
       <h3 class="label">progress</h3>
       <button
         class="add-btn"
-        (click)="openTaskModal.emit({ mode: TaskModalMode.CREATE, status: TaskStatus.PROGRESS })"
+        (click)="openTaskModal.emit({ mode: TaskModalMode.CREATE, status: TaskStatus.PROGRESS, task: null })"
       >
         <app-icon-plus />
       </button>
     </div>
     <div class="tasks">
       @for (task of progressTasks(); track task.id) {
-      <app-task-card [task]="task" />
+      <app-task-card
+        [task]="task"
+        (edit)="openTaskModal.emit({mode: TaskModalMode.EDIT, status: TaskStatus.PROGRESS, task})"
+      />
       }
     </div>
   </div>
@@ -36,14 +42,17 @@
       <h3 class="label">done</h3>
       <button
         class="add-btn"
-        (click)="openTaskModal.emit({ mode: TaskModalMode.CREATE, status: TaskStatus.DONE })"
+        (click)="openTaskModal.emit({ mode: TaskModalMode.CREATE, status: TaskStatus.DONE, task: null })"
       >
         <app-icon-plus />
       </button>
     </div>
     <div class="tasks">
       @for (task of doneTasks(); track task.id) {
-      <app-task-card [task]="task" />
+      <app-task-card
+        [task]="task"
+        (edit)="openTaskModal.emit({mode: TaskModalMode.EDIT, status: TaskStatus.DONE, task})"
+      />
       }
     </div>
   </div>

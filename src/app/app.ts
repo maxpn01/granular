@@ -18,33 +18,66 @@ export class App {
   readonly isTaskModalOpen = signal(false);
   readonly taskModalMode = signal<TaskModalMode>(TaskModalMode.CREATE);
   readonly taskModalStatus = signal<TaskStatus>(TaskStatus.TODO);
+  readonly currentlyEditedTask = signal<Task | null>(null);
 
   readonly tasks = signal<Task[]>([]);
 
-  openTaskModal(event: { mode: TaskModalMode; status?: TaskStatus }) {
+  openTaskModal(event: {
+    mode: TaskModalMode;
+    status: TaskStatus;
+    task: Task | null;
+  }) {
     this.isTaskModalOpen.set(true);
     this.taskModalMode.set(event.mode);
-
-    if (event?.status) this.taskModalStatus.set(event.status);
+    this.taskModalStatus.set(event.status);
+    this.currentlyEditedTask.set(event.task);
   }
 
   closeTaskModal() {
     this.isTaskModalOpen.set(false);
+    this.currentlyEditedTask.set(null);
   }
 
   addTask(form: TaskFormValues) {
-    const task: Task = {
-      id: crypto.randomUUID(),
+    const newTask: Task = {
+      id: form.id,
       title: form.title,
       description: form.description,
       priority: form.priority,
       status: form.status,
       subtasks: [],
       createdAt: new Date().toISOString(),
-      updatedat: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     };
 
-    this.tasks.update((tasks) => [...tasks, task]);
+    this.tasks.update((tasks) => [...tasks, newTask]);
     this.closeTaskModal();
+  }
+
+  editTask(form: TaskFormValues) {
+    const updatedTask: Task = {
+      id: form.id,
+      title: form.title,
+      description: form.description,
+      priority: form.priority,
+      status: form.status,
+      subtasks: [],
+      createdAt: form.createdAt,
+      updatedAt: new Date().toISOString(),
+    };
+
+    this.tasks.update((tasks) =>
+      tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task)),
+    );
+    this.closeTaskModal();
+  }
+
+  handleTaskSubmit(form: TaskFormValues) {
+    if (this.taskModalMode() === TaskModalMode.EDIT) {
+      this.editTask(form);
+      return;
+    }
+
+    this.addTask(form);
   }
 }
