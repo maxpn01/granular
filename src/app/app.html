@@ -1,37 +1,18 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 <div class="wrapper">
   <aside>
     <app-user-profile />
   </aside>
 
   <main>
-    <app-board [tasks]="tasks()" (openTaskModal)="openTaskModal($event)" />
+    <app-board
+      [tasks]="boardService.tasks()"
+      (openTaskModal)="openTaskModal($event)"
+    />
   </main>
 
   <app-task-modal
-    [isOpen]="isTaskModalOpen()"
-    [mode]="taskModalMode()"
+    [state]="taskModalState()"
     (close)="closeTaskModal()"
-    [status]="taskModalStatus()"
     (formSubmit)="handleTaskSubmit($event)"
-    [task]="currentlyEditedTask()"
   />
 </div>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<router-outlet />

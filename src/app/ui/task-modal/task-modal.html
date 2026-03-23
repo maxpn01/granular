@@ -1,8 +1,8 @@
-@if (isOpen()) {
+@if (state().open) {
 <div class="modal">
   <div class="card">
     <div class="header">
-      <h3 class="title">{{mode() === "create" ? "Add task" : "Edit task"}}</h3>
+      <h3 class="title">{{titleLabel()}}</h3>
       <button class="close-btn" (click)="close.emit()">
         <app-icon-close />
       </button>
@@ -14,8 +14,11 @@
         <input id="title" type="text" formControlName="title" />
 
         @if (tasksForm.controls.title.touched &&
-        tasksForm.controls.title.invalid) {
+        tasksForm.controls.title.errors?.['required']) {
         <span class="error">title is required</span>
+        } @if (tasksForm.controls.title.touched &&
+        tasksForm.controls.title.errors?.['maxlength']) {
+        <span class="error">title must be 60 characters or fewer</span>
         }
       </div>
 
@@ -42,7 +45,7 @@
       </div>
 
       <button type="submit" class="submit-btn" [disabled]="tasksForm.invalid">
-        {{mode() === "create" ? "Add" : "Edit"}}
+        {{submitLabel()}}
       </button>
     </form>
   </div>
