@@ -1,6 +1,7 @@
 export const APP_TITLE = "granular";
 
-export enum TaskModalMode {
+export enum TaskActions {
   CREATE = "create",
   EDIT = "edit",
+  DELETE = "delete",
 }

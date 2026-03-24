@@ -1,13 +1,6 @@
-import {
-  Component,
-  computed,
-  effect,
-  input,
-  output,
-  signal,
-} from "@angular/core";
-import { Task, TaskPriority, TaskStatus } from "../../shared/models/task.model";
-import { TaskModalMode } from "../../app.globals";
+import { Component, computed, effect, input, output } from "@angular/core";
+import { TaskPriority, TaskStatus } from "../../shared/models/task.model";
+import { TaskActions } from "../../app.globals";
 import {
   ReactiveFormsModule,
   FormGroup,
@@ -30,7 +23,7 @@ export class TaskModal {
 
   readonly isEditMode = computed(() => {
     const state = this.state();
-    return state.open && state.mode === TaskModalMode.EDIT;
+    return state.open && state.mode === TaskActions.EDIT;
   });
 
   readonly titleLabel = computed(() =>
@@ -53,7 +46,7 @@ export class TaskModal {
       const state = this.state();
       if (!state.open) return;
 
-      if (state.mode === TaskModalMode.EDIT && state.task) {
+      if (state.mode === TaskActions.EDIT && state.task) {
         this.tasksForm.patchValue({
           title: state.task.title,
           description: state.task.description ?? "",

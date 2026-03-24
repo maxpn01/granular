@@ -4,7 +4,7 @@
       <h3 class="label">todo</h3>
       <button
         class="add-btn"
-        (click)="openTaskModal.emit({ mode: TaskModalMode.CREATE, status: TaskStatus.TODO, task: null })"
+        (click)="openTaskModal.emit({ mode: TaskActions.CREATE, status: TaskStatus.TODO, task: null })"
       >
         <app-icon-plus />
       </button>
@@ -13,7 +13,8 @@
       @for (task of todoTasks(); track task.id) {
       <app-task-card
         [task]="task"
-        (edit)="openTaskModal.emit({mode: TaskModalMode.EDIT, status: TaskStatus.TODO, task})"
+        (edit)="openTaskModal.emit({mode: TaskActions.EDIT, status: TaskStatus.TODO, task})"
+        (delete)="removeTask($event)"
       />
       }
     </div>
@@ -23,7 +24,7 @@
       <h3 class="label">progress</h3>
       <button
         class="add-btn"
-        (click)="openTaskModal.emit({ mode: TaskModalMode.CREATE, status: TaskStatus.PROGRESS, task: null })"
+        (click)="openTaskModal.emit({ mode: TaskActions.CREATE, status: TaskStatus.PROGRESS, task: null })"
       >
         <app-icon-plus />
       </button>
@@ -32,7 +33,8 @@
       @for (task of progressTasks(); track task.id) {
       <app-task-card
         [task]="task"
-        (edit)="openTaskModal.emit({mode: TaskModalMode.EDIT, status: TaskStatus.PROGRESS, task})"
+        (edit)="openTaskModal.emit({mode: TaskActions.EDIT, status: TaskStatus.PROGRESS, task})"
+        (delete)="removeTask($event)"
       />
       }
     </div>
@@ -42,7 +44,7 @@
       <h3 class="label">done</h3>
       <button
         class="add-btn"
-        (click)="openTaskModal.emit({ mode: TaskModalMode.CREATE, status: TaskStatus.DONE, task: null })"
+        (click)="openTaskModal.emit({ mode: TaskActions.CREATE, status: TaskStatus.DONE, task: null })"
       >
         <app-icon-plus />
       </button>
@@ -51,7 +53,8 @@
       @for (task of doneTasks(); track task.id) {
       <app-task-card
         [task]="task"
-        (edit)="openTaskModal.emit({mode: TaskModalMode.EDIT, status: TaskStatus.DONE, task})"
+        (edit)="openTaskModal.emit({mode: TaskActions.EDIT, status: TaskStatus.DONE, task})"
+        (delete)="removeTask($event)"
       />
       }
     </div>

@@ -1,9 +1,17 @@
-import { Component, computed, input, output, signal } from "@angular/core";
+import {
+  Component,
+  computed,
+  inject,
+  input,
+  output,
+  signal,
+} from "@angular/core";
 import { TaskCard } from "../task-card/task-card";
 import { Task, TaskStatus } from "../../shared/models/task.model";
-import { TaskModalMode } from "../../app.globals";
+import { TaskActions } from "../../app.globals";
 import { IconPlus } from "../icons/icon-plus";
 import { TaskFormValues } from "../task-modal/task-modal.type";
+import { BoardService } from "../../core/services/board.service";
 
 @Component({
   selector: "app-board",
@@ -12,10 +20,11 @@ import { TaskFormValues } from "../task-modal/task-modal.type";
   styleUrl: "./board.scss",
 })
 export class Board {
-  readonly TaskModalMode = TaskModalMode;
+  readonly TaskActions = TaskActions;
   readonly TaskStatus = TaskStatus;
+  private readonly boardService = inject(BoardService);
   readonly openTaskModal = output<{
-    mode: TaskModalMode;
+    mode: TaskActions;
     status: TaskStatus;
     task: Task | null;
   }>();
@@ -33,4 +42,9 @@ export class Board {
   doneTasks = computed(
     () => this.tasks()?.filter((task) => task.status === TaskStatus.DONE) ?? [],
   );
+
+  removeTask(taskId: string | undefined) {
+    if (!taskId) return;
+    this.boardService.removeTask(taskId);
+  }
 }

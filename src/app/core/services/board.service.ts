@@ -35,4 +35,8 @@ export class BoardService {
       ),
     );
   }
+
+  removeTask(taskId: string) {
+    this.tasks.update((tasks) => tasks.filter((task) => task.id !== taskId));
+  }
 }

@@ -1,4 +1,20 @@
 <div class="task-card">
   <span class="title">{{task()?.title ?? ""}}</span>
-  <button class="edit-btn" (click)="edit.emit()">edit</button>
+  <button class="ellipsis-btn" (click)="toggleDropdown()">
+    <app-icon-ellipsis />
+  </button>
+
+  @if (isDropdownOpen()) {
+  <div class="dropdown">
+    <div class="option" (click)="edit.emit()">
+      <span>edit</span>
+      <app-icon-pen />
+    </div>
+    <div class="separator"></div>
+    <div class="option" (click)="delete.emit(task()?.id)">
+      <span>delete</span>
+      <app-icon-trash-can />
+    </div>
+  </div>
+  }
 </div>

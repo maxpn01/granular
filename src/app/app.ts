@@ -2,7 +2,7 @@ import { Component, inject, signal } from "@angular/core";
 import { Board } from "./ui/board/board";
 import { UserProfile } from "./ui/user-profile/user-profile";
 import { TaskModal } from "./ui/task-modal/task-modal";
-import { APP_TITLE, TaskModalMode } from "./app.globals";
+import { APP_TITLE, TaskActions } from "./app.globals";
 import { Task, TaskStatus } from "./shared/models/task.model";
 import {
   TaskFormValues,
@@ -24,7 +24,7 @@ export class App {
   readonly boardService = inject(BoardService);
 
   openTaskModal(event: {
-    mode: TaskModalMode;
+    mode: TaskActions;
     status: TaskStatus;
     task: Task | null;
   }) {
@@ -43,7 +43,7 @@ export class App {
   handleTaskSubmit(form: TaskFormValues) {
     const state = this.taskModalState();
 
-    if (state.open && state.mode === TaskModalMode.EDIT && state.task) {
+    if (state.open && state.mode === TaskActions.EDIT && state.task) {
       this.boardService.editTask(state.task.id, form);
       this.closeTaskModal();
       return;
