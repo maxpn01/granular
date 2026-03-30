@@ -15,9 +15,12 @@
 .import-export-btns {
     display: flex;
     gap: 15px;
+    margin-top: 15px;
 
     button {
         background: transparent;
         border: 1px solid black;
+        font-size: 18px;
+        padding: 5px 10px;
     }
 }
