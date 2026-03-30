@@ -39,6 +39,16 @@ export class TaskCard {
     this.isDropdownOpen.update((prev) => !prev);
   }
 
+  handleEditClick() {
+    this.isDropdownOpen.set(false);
+    this.edit.emit();
+  }
+
+  handleDeleteClick() {
+    this.isDropdownOpen.set(false);
+    this.delete.emit(this.task()?.id);
+  }
+
   @HostListener("document:click", ["$event.target"])
   closeDropdownOnOutsideClick(target: EventTarget | null) {
     if (!(target instanceof Node)) {

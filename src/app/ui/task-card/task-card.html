@@ -6,12 +6,12 @@
 
   @if (isDropdownOpen()) {
   <div class="dropdown">
-    <div class="option" (click)="edit.emit()">
+    <div class="option" (click)="handleEditClick()">
       <span>edit</span>
       <app-icon-pen />
     </div>
     <div class="separator"></div>
-    <div class="option" (click)="delete.emit(task()?.id)">
+    <div class="option" (click)="handleDeleteClick()">
       <span>delete</span>
       <app-icon-trash-can />
     </div>

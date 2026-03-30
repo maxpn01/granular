@@ -1,15 +1,10 @@
 <div class="profile">
-  <!-- <div class="info">
-    <img
-      src="/modern_samurai_gen.jpg"
-      class="profile-picture"
-      alt="profile picture"
-    />
-    <h3 class="name">Max</h3>
-  </div> -->
+  <div class="header">
+    <h3 class="title">granular</h3>
+  </div>
 
   <div class="total-progress">
-    <p>total progress: {{ progressPercent() }}/100%</p>
+    <p>total progress: {{ progressPercent() }} / 100%</p>
   </div>
 
   <div class="import-export-btns">
@@ -21,7 +16,9 @@
       (change)="importFromFile($event)"
     />
 
-    <button class="btn" (click)="fileInput.click()">import</button>
-    <button class="btn" (click)="exportToJson()">export</button>
+    <button class="btn btn-secondary" (click)="fileInput.click()">
+      import
+    </button>
+    <button class="btn btn-primary" (click)="exportToJson()">export</button>
   </div>
 </div>
