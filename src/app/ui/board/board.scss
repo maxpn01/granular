@@ -31,6 +31,15 @@
         min-height: 200px;
         padding: 8px 0;
     }
+
+
+    .empty-state {
+        padding: 18px 16px;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.05);
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 14px;
+    }
 }
 
 .cdk-drop-list-dragging app-task-card:not(.cdk-drag-placeholder) {

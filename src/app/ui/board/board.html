@@ -17,7 +17,9 @@
       [cdkDropListConnectedTo]="connectedDropLists"
       (cdkDropListDropped)="dropTask($event, TaskStatus.TODO)"
     >
-      @for (task of todoTasks(); track task.id) {
+      @if (!todoTasks().length) {
+      <div class="empty-state">No todos yet</div>
+      } @for (task of todoTasks(); track task.id) {
       <app-task-card
         [task]="task"
         (edit)="openTaskModal.emit({mode: TaskActions.EDIT, status: TaskStatus.TODO, task})"
@@ -44,7 +46,9 @@
       [cdkDropListConnectedTo]="connectedDropLists"
       (cdkDropListDropped)="dropTask($event, TaskStatus.PROGRESS)"
     >
-      @for (task of progressTasks(); track task.id) {
+      @if (!progressTasks().length) {
+      <div class="empty-state">Nothing in progress</div>
+      } @for (task of progressTasks(); track task.id) {
       <app-task-card
         [task]="task"
         (edit)="openTaskModal.emit({mode: TaskActions.EDIT, status: TaskStatus.PROGRESS, task})"
@@ -71,7 +75,9 @@
       [cdkDropListConnectedTo]="connectedDropLists"
       (cdkDropListDropped)="dropTask($event, TaskStatus.DONE)"
     >
-      @for (task of doneTasks(); track task.id) {
+      @if (!doneTasks().length) {
+      <div class="empty-state">Nothing completed yet</div>
+      } @for (task of doneTasks(); track task.id) {
       <app-task-card
         [task]="task"
         (edit)="openTaskModal.emit({mode: TaskActions.EDIT, status: TaskStatus.DONE, task})"
