@@ -78,4 +78,12 @@ export class BoardService {
       ];
     });
   }
+
+  exportTasks() {
+    return this.tasks();
+  }
+
+  importTasks(tasks: Task[]) {
+    this.tasks.set(tasks);
+  }
 }

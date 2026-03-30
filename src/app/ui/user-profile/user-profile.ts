@@ -27,4 +27,32 @@ export class UserProfile {
 
     return Math.round((done / total) * 100);
   });
+
+  exportToJson() {
+    const tasks = this.boardService.exportTasks();
+    const json = JSON.stringify(tasks, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "tasks.json";
+    link.click();
+
+    URL.revokeObjectURL(url);
+  }
+
+  async importFromFile(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (!file) return;
+
+    const text = await file.text();
+    const parsed = JSON.parse(text);
+
+    this.boardService.importTasks(parsed);
+
+    input.value = "";
+  }
 }

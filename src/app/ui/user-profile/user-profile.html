@@ -13,7 +13,15 @@
   </div>
 
   <div class="import-export-btns">
-    <button class="import">import</button>
-    <button class="export">export</button>
+    <input
+      #fileInput
+      type="file"
+      accept="application/json"
+      hidden
+      (change)="importFromFile($event)"
+    />
+
+    <button class="btn" (click)="fileInput.click()">import</button>
+    <button class="btn" (click)="exportToJson()">export</button>
   </div>
 </div>
