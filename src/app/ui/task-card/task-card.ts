@@ -7,6 +7,7 @@ import {
   output,
   signal,
 } from "@angular/core";
+import { CdkDrag } from "@angular/cdk/drag-drop";
 import { Task, TaskStatus } from "../../shared/models/task.model";
 import { TaskActions } from "../../app.globals";
 import { IconEllipsis } from "../icons/icon-ellipsis";
@@ -15,7 +16,7 @@ import { IconTrashCan } from "../icons/icon-trash-can";
 
 @Component({
   selector: "app-task-card",
-  imports: [IconEllipsis, IconPen, IconTrashCan],
+  imports: [IconEllipsis, IconPen, IconTrashCan, CdkDrag],
   templateUrl: "./task-card.html",
   styleUrl: "./task-card.scss",
 })
@@ -29,6 +30,10 @@ export class TaskCard {
   readonly delete = output<string | undefined>();
 
   readonly isDropdownOpen = signal<boolean>(false);
+
+  get dragData() {
+    return this.task()?.id;
+  }
 
   toggleDropdown() {
     this.isDropdownOpen.update((prev) => !prev);

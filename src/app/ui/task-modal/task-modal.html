@@ -40,9 +40,20 @@
         </select>
       </div>
 
+      @if (isEditMode()) {
+      <div class="form-group">
+        <label for="status">status</label>
+        <select id="status" formControlName="status">
+          <option [value]="TaskStatus.TODO">todo</option>
+          <option [value]="TaskStatus.PROGRESS">progress</option>
+          <option [value]="TaskStatus.DONE">done</option>
+        </select>
+      </div>
+      } @else {
       <div class="form-group">
         <input type="hidden" formControlName="status" />
       </div>
+      }
 
       <button type="submit" class="submit-btn" [disabled]="tasksForm.invalid">
         {{submitLabel()}}

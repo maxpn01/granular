@@ -9,7 +9,14 @@
         <app-icon-plus />
       </button>
     </div>
-    <div class="tasks">
+    <div
+      class="tasks"
+      cdkDropList
+      id="todo-list"
+      [cdkDropListData]="todoTasks()"
+      [cdkDropListConnectedTo]="connectedDropLists"
+      (cdkDropListDropped)="dropTask($event, TaskStatus.TODO)"
+    >
       @for (task of todoTasks(); track task.id) {
       <app-task-card
         [task]="task"
@@ -29,7 +36,14 @@
         <app-icon-plus />
       </button>
     </div>
-    <div class="tasks">
+    <div
+      class="tasks"
+      cdkDropList
+      id="progress-list"
+      [cdkDropListData]="progressTasks()"
+      [cdkDropListConnectedTo]="connectedDropLists"
+      (cdkDropListDropped)="dropTask($event, TaskStatus.PROGRESS)"
+    >
       @for (task of progressTasks(); track task.id) {
       <app-task-card
         [task]="task"
@@ -49,7 +63,14 @@
         <app-icon-plus />
       </button>
     </div>
-    <div class="tasks">
+    <div
+      class="tasks"
+      cdkDropList
+      id="done-list"
+      [cdkDropListData]="doneTasks()"
+      [cdkDropListConnectedTo]="connectedDropLists"
+      (cdkDropListDropped)="dropTask($event, TaskStatus.DONE)"
+    >
       @for (task of doneTasks(); track task.id) {
       <app-task-card
         [task]="task"

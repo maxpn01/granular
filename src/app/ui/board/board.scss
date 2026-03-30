@@ -28,5 +28,16 @@
         display: flex;
         flex-direction: column;
         gap: 30px;
+        min-height: 200px;
+        padding: 8px 0;
     }
+}
+
+.cdk-drop-list-dragging app-task-card:not(.cdk-drag-placeholder) {
+    transition: transform 200ms ease;
+}
+
+.tasks.cdk-drop-list-receiving {
+    outline: 1px dashed black;
+    outline-offset: 8px;
 }

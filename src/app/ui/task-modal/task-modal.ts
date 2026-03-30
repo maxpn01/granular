@@ -17,6 +17,7 @@ import { IconClose } from "../icons/icon-close";
   styleUrl: "./task-modal.scss",
 })
 export class TaskModal {
+  readonly TaskStatus = TaskStatus;
   readonly state = input<TaskModalState>({ open: false });
   readonly close = output<void>();
   readonly formSubmit = output<TaskFormValues>();
@@ -71,8 +72,6 @@ export class TaskModal {
     const state = this.state();
 
     if (!state.open) return;
-
-    this.tasksForm.controls.status.setValue(state.status ?? TaskStatus.TODO);
     this.formSubmit.emit(this.tasksForm.getRawValue());
   }
 }

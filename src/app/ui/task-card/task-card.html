@@ -1,4 +1,4 @@
-<div class="task-card">
+<div class="task-card" cdkDrag [cdkDragData]="dragData">
   <span class="title">{{task()?.title ?? ""}}</span>
   <button class="ellipsis-btn" (click)="toggleDropdown()">
     <app-icon-ellipsis />
